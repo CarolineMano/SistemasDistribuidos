@@ -1,3 +1,0 @@
-ALTER TABLE filial ADD cep VARCHAR(255) NOT NULL;
-
-ALTER TABLE filial RENAME TO tb_filial;
