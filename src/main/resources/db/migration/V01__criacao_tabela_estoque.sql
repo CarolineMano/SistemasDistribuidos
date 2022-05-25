@@ -1,0 +1,6 @@
+CREATE TABLE produtos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(80) NOT NULL,
+quantidade INT,
+valor DECIMAL 
+);
