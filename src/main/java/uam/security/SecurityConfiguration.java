@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// Permite autorização a todos os endpoints, será removido depois
-		http.authorizeRequests().anyRequest().permitAll();
+		http.csrf().disable().authorizeRequests().anyRequest().permitAll();
 	}
 	
 }
