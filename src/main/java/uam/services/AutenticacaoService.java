@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -20,8 +21,8 @@ import uam.entities.Usuario;
 @Service
 public class AutenticacaoService {
 	
-//	@Autowired
-//	private AuthenticationManager authManager;
+	@Autowired
+	private AuthenticationManager authManager;
 	
 	@Value("${uam.jwt.expiration}")
 	private String expiration;
@@ -33,10 +34,8 @@ public class AutenticacaoService {
 	private String issuer;
 	
 	public TokenDTO autenticar(UsuarioDTO credenciais) throws AuthenticationException {
-//		Authentication authenticate = authManager.authenticate(new UsernamePasswordAuthenticationToken(credenciais.getEmail(), credenciais.getSenha()));
-//		String token = gerarToken(authenticate);
-		
-		String token = gerarToken(null);
+		Authentication authenticate = authManager.authenticate(new UsernamePasswordAuthenticationToken(credenciais.getEmail(), credenciais.getSenha()));
+		String token = gerarToken(authenticate);
 		
 		return new TokenDTO(token);
 	}
@@ -46,9 +45,7 @@ public class AutenticacaoService {
 	}
 	
 	private String gerarToken(Authentication authenticate) {
-//		Usuario principal = (Usuario)authenticate.getPrincipal();
-		Usuario principal = new Usuario();
-		principal.setId(1L);
+		Usuario principal = (Usuario)authenticate.getPrincipal();
 		Date hoje = new Date();
 		Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
 		
