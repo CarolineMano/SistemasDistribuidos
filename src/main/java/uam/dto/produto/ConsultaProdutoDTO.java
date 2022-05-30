@@ -7,15 +7,17 @@ public class ConsultaProdutoDTO {
 	private String nome;
 	private int quantidade;
 	private float valorUnitario;
+	private Long id_usuario;
 	
 	public ConsultaProdutoDTO() {
 	}
 
-	public ConsultaProdutoDTO(Long id, String nome, int quantidade, float valorUnitario) {
+	public ConsultaProdutoDTO(Long id, String nome, int quantidade, float valorUnitario, Long id_usuario) {
 		this.id = id;
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.valorUnitario = valorUnitario;
+		this.id_usuario = id_usuario;
 	}
 
 	public Long getId() {
@@ -49,4 +51,14 @@ public class ConsultaProdutoDTO {
 	public void setValorUnitario(float valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
+
+	public Long getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(Long id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
+	
 }
