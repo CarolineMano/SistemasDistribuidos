@@ -1,12 +1,10 @@
 package uam.dto.produto;
 
-//import uam.dto.endereco.EnderecoDTO;
 
 public class ConsultaProdutoDTO {
 	
 	private Long id;
 	private String nome;
-//	private EnderecoDTO endereco;
 	private int quantidade;
 	private float valorUnitario;
 	
