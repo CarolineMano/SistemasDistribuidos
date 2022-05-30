@@ -1,6 +1,5 @@
 package uam.entities;
 
-//import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,9 +16,6 @@ public class Produto {
 	private String nome;	
 	private int quantidade;
 	private float valor;
-	
-//	@Embedded
-//	private Endereco endereço;
 
 	public Produto() {
 	}

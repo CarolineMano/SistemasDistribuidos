@@ -1,6 +1,8 @@
-CREATE TABLE produtos (
-id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE estoque (
+id_lote INT PRIMARY KEY,
 nome VARCHAR(80) NOT NULL,
 quantidade INT,
-valor DECIMAL 
+valorUnitario DECIMAL,
+id_usuarios  INT,
+FOREIGN KEY (id_usuarios) REFERENCES usuarios (id)
 );

@@ -21,7 +21,7 @@ public class ProdutoService {
 		return produtoRepository.save(produto);
 	}
 	
-	public List<Produto> listaTodasAsFiliais() {
+	public List<Produto> listarEstoque() {
 		return produtoRepository.findAll();
 	}
 

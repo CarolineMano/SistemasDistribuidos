@@ -3,7 +3,6 @@ package uam.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,7 @@ import uam.entities.Produto;
 import uam.services.ProdutoService;
 
 @RestController
-@RequestMapping("v1/produtos")
+@RequestMapping("v1/estoque")
 public class ProdutoController {
 	private final ProdutoService produtoService;
 	
@@ -32,7 +31,7 @@ public class ProdutoController {
 
 	@GetMapping
 	public ResponseEntity<List<ConsultaProdutoDTO>> buscarTodasFiliais() {		
-		return ResponseEntity.ok(produtoService.listaTodasAsFiliais()
+		return ResponseEntity.ok(produtoService.listarEstoque()
 				.stream().map(ProdutoMapper::fromEntity).collect(Collectors.toList()));
 	}
 	
