@@ -51,4 +51,21 @@ public class AutenticacaoService {
 		
 		return JWT.create().withIssuer(issuer).withExpiresAt(dataExpiracao).withSubject(principal.getId().toString()).sign(this.criarAlgoritmo());
 	}
+	
+	public boolean verificaToken(String token) {
+		if(token==null)
+			return false;
+		try {
+			JWT.require(criarAlgoritmo()).withIssuer(this.issuer).build().verify(token);
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public Long retornarIdUsuario(String token) {
+		String subject = JWT.require(criarAlgoritmo()).withIssuer(this.issuer).build().verify(token).getSubject();
+		return Long.parseLong(subject);
+	}
 }
