@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class ProdutoController {
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('Admin')")
 	public ResponseEntity<ConsultaProdutoDTO> salvarProduto(@RequestBody RegistroProdutoDTO dto) {
 		Produto produto = produtoService.salvarProduto(ProdutoMapper.fromDTO(dto));
 		return ResponseEntity.ok(ProdutoMapper.fromEntity(produto));
@@ -52,6 +54,7 @@ public class ProdutoController {
 	}
 	
 	@PutMapping("{id}")
+	@PreAuthorize("hasAuthority('Admin')")
 	public ResponseEntity<ConsultaProdutoDTO> alterarProduto(@RequestBody RegistroProdutoDTO dto, @PathVariable Long id) {
 		try {
 			Produto produto = produtoService.atualizarProduto(ProdutoMapper.fromDTO(dto), id);
@@ -62,6 +65,7 @@ public class ProdutoController {
 	}
 	
 	@DeleteMapping("{id}")
+	@PreAuthorize("hasAuthority('Admin')")
 	public ResponseEntity<ConsultaProdutoDTO> deletarProduto(@PathVariable Long id) {
 		try {
 			produtoService.excluirProduto(id);
