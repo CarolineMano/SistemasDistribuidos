@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -27,9 +27,19 @@ public class Usuario implements UserDetails{
 	private String email;
 	private String senha;
 	
-	@OneToOne
+	@ManyToOne
 	private Perfil perfil;
 		
+	public Usuario() {
+	}
+	
+	public Usuario(Long id, String email, String senha, Perfil perfil) {
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+		this.perfil = perfil;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -86,5 +96,4 @@ public class Usuario implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-
 }

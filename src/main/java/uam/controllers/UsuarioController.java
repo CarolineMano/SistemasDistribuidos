@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import uam.dto.usuario.RegistroUsuarioDTO;
 import uam.dto.usuario.TokenDTO;
 import uam.dto.usuario.UsuarioDTO;
+import uam.dto.usuario.UsuarioMapper;
+import uam.entities.Usuario;
 import uam.services.AutenticacaoService;
+import uam.services.UsuarioService;
 
 @RestController
 @RequestMapping("v1/auth")
@@ -20,6 +24,13 @@ public class UsuarioController {
 	@Autowired
 	private AutenticacaoService autenticacaoService;
 	
+	private UsuarioService usuarioService;
+	
+	public UsuarioController(UsuarioService usuarioService) {
+		super();
+		this.usuarioService = usuarioService;
+	}
+
 	@PostMapping
 	public ResponseEntity<TokenDTO> autenticar(@RequestBody UsuarioDTO credenciais) {
 		
@@ -28,5 +39,13 @@ public class UsuarioController {
 		} catch (AuthenticationException ae) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
+	}
+	
+	@RequestMapping("novo")
+	@PostMapping
+	public ResponseEntity<String> criarUsuario(@RequestBody RegistroUsuarioDTO dto) {
+		Usuario usuario = usuarioService.salvarUsuario(UsuarioMapper.fromDTO(dto));
+		
+		return ResponseEntity.ok(usuario.getEmail());
 	}
 }
