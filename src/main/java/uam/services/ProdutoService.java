@@ -17,7 +17,8 @@ public class ProdutoService {
 		this.produtoRepository = produtoRepository;
 	}
 	
-	public Produto salvarProduto(Produto produto) {
+	public Produto salvarProduto(Produto produto, long idUsuario) {
+		produto.setId_usuario(idUsuario);
 		return produtoRepository.save(produto);
 	}
 	
@@ -30,9 +31,10 @@ public class ProdutoService {
 		return optional.orElseThrow(() -> new RuntimeException("Produto não encontrada"));
 	}
 	
-	public Produto atualizarProduto(Produto produto, long id) {
+	public Produto atualizarProduto(Produto produto, long id, long idUsuario) {
 		Produto produtoOriginal = this.buscarProduto(id);
 		produto.setId(produtoOriginal.getId());
+		produto.setId_usuario(idUsuario);
 		
 		return produtoRepository.save(produto);
 	}

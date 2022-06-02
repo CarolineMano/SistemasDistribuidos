@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,15 +19,18 @@ import uam.dto.produto.ConsultaProdutoDTO;
 import uam.dto.produto.ProdutoMapper;
 import uam.dto.produto.RegistroProdutoDTO;
 import uam.entities.Produto;
+import uam.services.AutenticacaoService;
 import uam.services.ProdutoService;
 
 @RestController
 @RequestMapping("v1/estoque")
 public class ProdutoController {
 	private final ProdutoService produtoService;
+	private final AutenticacaoService autenticacaoService;
 	
-	public ProdutoController(ProdutoService produtoService) {
+	public ProdutoController(ProdutoService produtoService, AutenticacaoService autenticacaoService) {
 		this.produtoService = produtoService;
+		this.autenticacaoService = autenticacaoService;
 	}
 
 
@@ -38,8 +42,9 @@ public class ProdutoController {
 	
 	@PostMapping
 	@PreAuthorize("hasAuthority('Admin')")
-	public ResponseEntity<ConsultaProdutoDTO> salvarProduto(@RequestBody RegistroProdutoDTO dto) {
-		Produto produto = produtoService.salvarProduto(ProdutoMapper.fromDTO(dto));
+	public ResponseEntity<ConsultaProdutoDTO> salvarProduto(@RequestBody RegistroProdutoDTO dto, @RequestHeader (name="Authorization") String header) {
+		String token = header.substring(7, header.length());
+		Produto produto = produtoService.salvarProduto(ProdutoMapper.fromDTO(dto), autenticacaoService.retornarIdUsuario(token));
 		return ResponseEntity.ok(ProdutoMapper.fromEntity(produto));
 	}
 	
@@ -55,9 +60,10 @@ public class ProdutoController {
 	
 	@PutMapping("{id}")
 	@PreAuthorize("hasAuthority('Admin')")
-	public ResponseEntity<ConsultaProdutoDTO> alterarProduto(@RequestBody RegistroProdutoDTO dto, @PathVariable Long id) {
+	public ResponseEntity<ConsultaProdutoDTO> alterarProduto(@RequestBody RegistroProdutoDTO dto, @PathVariable Long id, @RequestHeader (name="Authorization") String header) {
 		try {
-			Produto produto = produtoService.atualizarProduto(ProdutoMapper.fromDTO(dto), id);
+			String token = header.substring(7, header.length());
+			Produto produto = produtoService.atualizarProduto(ProdutoMapper.fromDTO(dto), id, autenticacaoService.retornarIdUsuario(token));
 			return ResponseEntity.ok(ProdutoMapper.fromEntity(produto));
 		} catch(RuntimeException ex) {
 			return ResponseEntity.notFound().build();
