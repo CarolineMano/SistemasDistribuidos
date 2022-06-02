@@ -2,7 +2,7 @@ CREATE TABLE estoque (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(80) NOT NULL,
 quantidade INT,
-valor DECIMAL,
+valor DOUBLE,
 id_usuario  INT,
 FOREIGN KEY (id_usuario) REFERENCES usuarios (id)
 );
