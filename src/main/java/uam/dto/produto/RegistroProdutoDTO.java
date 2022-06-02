@@ -6,7 +6,6 @@ public class RegistroProdutoDTO {
 	private String nome;
 	private int quantidade;
 	private float valorUnitario;
-	private Long id_usuario;
 	
 	public String getNome() {
 		return nome;
@@ -25,13 +24,5 @@ public class RegistroProdutoDTO {
 	}
 	public void setValorUnitario(float valorUnitario) {
 		this.valorUnitario = valorUnitario;
-	}
-	public Long getId_usuario() {
-		return id_usuario;
-	}
-	public void setId_usuario(Long id_usuario) {
-		this.id_usuario = id_usuario;
-	}
-
-	
+	}	
 }

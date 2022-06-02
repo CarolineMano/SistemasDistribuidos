@@ -5,7 +5,7 @@ import uam.entities.Produto;
 
 public class ProdutoMapper {
 	public static Produto fromDTO(RegistroProdutoDTO dto) {
-		return new Produto(null, dto.getNome(), dto.getQuantidade(), dto.getValorUnitario(), dto.getId_usuario());
+		return new Produto(null, dto.getNome(), dto.getQuantidade(), dto.getValorUnitario(), null);
 	}
 	
 	public static ConsultaProdutoDTO fromEntity(Produto produto) {
