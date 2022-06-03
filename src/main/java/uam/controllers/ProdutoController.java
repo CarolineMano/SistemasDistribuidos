@@ -35,7 +35,7 @@ public class ProdutoController {
 
 
 	@GetMapping
-	public ResponseEntity<List<ConsultaProdutoDTO>> buscarTodasFiliais() {		
+	public ResponseEntity<List<ConsultaProdutoDTO>> listarEstoque() {		
 		return ResponseEntity.ok(produtoService.listarEstoque()
 				.stream().map(ProdutoMapper::fromEntity).collect(Collectors.toList()));
 	}
