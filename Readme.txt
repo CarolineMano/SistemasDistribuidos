@@ -18,3 +18,15 @@ caso o seu main user do Mysql seja diferente de root root, login e senha respect
 src>main>resources>application.properties
 na linha (2) temos o usuario;
 na linha (3) temos a senha;
+
+Bibliografia:
+
+https://blog.betrybe.com/framework-de-programacao/spring-boot-tudo-sobre/
+https://www.devmedia.com.br/como-o-jwt-funciona/40265
+https://rockcontent.com/br/blog/rest-api/https://stackoverflow.com/questions/32586990/how-to-send-http-request-using-jwt-token-for-authentication-from-cookie-storage
+https://stackoverflow.com/questions/32586990/how-to-send-http-request-using-jwt-token-for-authentication-from-cookie-storage
+https://zetcode.com/java/httpclient/
+https://zetcode.com/springboot/groovycli/
+https://www.youtube.com/watch?v=h6nMjjxJWjk&ab_channel=SpringDeveloper
+https://zetcode.com/java/httpclient/
+https://www.w3schools.com/mysql/mysql_datatypes.asp
