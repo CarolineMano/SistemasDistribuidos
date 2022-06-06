@@ -28,7 +28,7 @@ public class ProdutoService {
 
 	public Produto buscarProduto(Long id) {
 		Optional<Produto> optional = produtoRepository.findById(id);
-		return optional.orElseThrow(() -> new RuntimeException("Produto não encontrada"));
+		return optional.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 	}
 	
 	public Produto atualizarProduto(Produto produto, long id, long idUsuario) {

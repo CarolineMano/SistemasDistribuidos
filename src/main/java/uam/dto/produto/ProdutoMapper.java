@@ -1,6 +1,5 @@
 package uam.dto.produto;
 
-//import uam.dto.endereco.EnderecoMapper;
 import uam.entities.Produto;
 
 public class ProdutoMapper {

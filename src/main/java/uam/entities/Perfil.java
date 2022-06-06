@@ -12,9 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 @Table(name = "perfis")
 public class Perfil implements GrantedAuthority{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY )

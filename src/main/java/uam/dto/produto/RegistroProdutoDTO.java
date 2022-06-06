@@ -1,6 +1,5 @@
 package uam.dto.produto;
 
-
 public class RegistroProdutoDTO {
 	
 	private String nome;

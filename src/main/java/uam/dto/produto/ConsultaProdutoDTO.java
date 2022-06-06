@@ -1,6 +1,5 @@
 package uam.dto.produto;
 
-
 public class ConsultaProdutoDTO {
 	
 	private Long id;

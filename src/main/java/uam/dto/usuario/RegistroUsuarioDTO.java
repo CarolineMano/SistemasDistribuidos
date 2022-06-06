@@ -6,15 +6,14 @@ public class RegistroUsuarioDTO {
 	private Long perfilId;
 	
 	public RegistroUsuarioDTO() {
-		super();
 	}
 	
 	public RegistroUsuarioDTO(String email, String senha, Long perfilId) {
-		super();
 		this.email = email;
 		this.senha = senha;
 		this.perfilId = perfilId;
 	}
+	
 	public String getEmail() {
 		return email;
 	}

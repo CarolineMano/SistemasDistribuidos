@@ -25,6 +25,7 @@ import uam.services.ProdutoService;
 @RestController
 @RequestMapping("v1/estoque")
 public class ProdutoController {
+	
 	private final ProdutoService produtoService;
 	private final AutenticacaoService autenticacaoService;
 	
@@ -33,9 +34,8 @@ public class ProdutoController {
 		this.autenticacaoService = autenticacaoService;
 	}
 
-
 	@GetMapping
-	public ResponseEntity<List<ConsultaProdutoDTO>> listarEstoque() {		
+	public ResponseEntity<List<ConsultaProdutoDTO>> buscarTodosProdutos() {		
 		return ResponseEntity.ok(produtoService.listarEstoque()
 				.stream().map(ProdutoMapper::fromEntity).collect(Collectors.toList()));
 	}

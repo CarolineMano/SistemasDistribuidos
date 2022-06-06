@@ -17,8 +17,8 @@ import uam.services.UsuarioService;
 
 public class FiltroAutenticacao extends OncePerRequestFilter{
 
-	private AutenticacaoService autenticacaoService;
-	private UsuarioService usuarioService;
+	private final AutenticacaoService autenticacaoService;
+	private final UsuarioService usuarioService;
 	
 	public FiltroAutenticacao(AutenticacaoService autenticacaoService, UsuarioService usuarioService) {
 		this.autenticacaoService = autenticacaoService;
